@@ -17,6 +17,7 @@ struct SearchView: View {
         NavigationStack {
             VStack {
                 searchField
+                    .padding(.horizontal, 16)
                 
                 List {
                     if viewModel.isLoading {
@@ -59,7 +60,6 @@ struct SearchView: View {
                 }
                 
             }
-            .padding(.horizontal, 16)
             .navigationTitle("Search Github users")
             .navigationDestination(for: GitHubUser.self) { model in
                 UserDetailView(viewModel: UserDetailViewModel(user: model))
@@ -80,7 +80,7 @@ struct SearchView: View {
 
 #Preview {
     SearchView()
-        .preferredColorScheme(.dark)
+//        .preferredColorScheme(.dark)
 }
 
 

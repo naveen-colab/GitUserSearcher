@@ -30,10 +30,12 @@ struct UserDetailView: View {
             viewModel.fetchUserDetails()
             viewModel.fetchUserRepos()
         }
+        .navigationTitle("User Details")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     var userDetailsHeaderView: some View {
-        VStack {
+        VStack(spacing: 8) {
             if let avatarURL = viewModel.userDetails?.avatarURL,
                let url = URL(string: avatarURL),
                !avatarURL.isEmpty {
@@ -60,8 +62,8 @@ struct UserDetailView: View {
                     .frame(width: 90, height: 80)
                     .foregroundColor(.gray)
             }
-            
-            Text("\(viewModel.userDetails?.name ?? "N/A")")
+        
+            Text("\(viewModel.userDetails?.login ?? "N/A")")
                 .font(.headline)
             Text("\(viewModel.userDetails?.bio ?? "")")
             

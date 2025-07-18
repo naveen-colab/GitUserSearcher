@@ -51,11 +51,11 @@ final class UserDetailViewModel: ObservableObject {
         print("Fetching user repos")
         isLoadingRepos = true
         Task { [weak self] in
-            guard let reposURL = self?.user.reposURL else {
+            guard let reposURL = self?.user.reposURL, let username = self?.user.login else {
                 self?.reposError = "Username is not available"
                 return
             }
-            let response = await getGithubUserRepositories(url: reposURL)
+            let response = await getGithubUserRepositories(username: username, perPage: 100, page: 1)
             
             self?.updateUserRepos(response)
         }

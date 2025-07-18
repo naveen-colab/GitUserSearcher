@@ -33,8 +33,8 @@ func getGithubUsersService(searchText: String, perPage: Int = 100,page: Int = 1)
     return nil
 }
 
-func getGithubUserRepositories(url: String) async -> GitHubRepoList? {
-    guard let url = URL(string: url) else {
+func getGithubUserRepositories(username: String, perPage: Int = 100,page: Int = 1) async -> GitHubRepoList? {
+    guard let url = URL(string: "https://api.github.com/users/\(username)/repos?per_page=\(perPage)&page=\(page)") else {
         print("Invalid URL")
         return nil
     }
